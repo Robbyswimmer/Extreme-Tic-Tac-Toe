@@ -47,7 +47,7 @@ func letterPlacer(nextMove: String, currentBoard: String) -> Int {
 }
 ```
 
-![Tic-Tac-Toe](/tictactoe-images/11x11-2.png)
+![Tic-Tac-Toe](/tictactoe-images/classic.png)
 
 ## Optimizing win-checking
 
