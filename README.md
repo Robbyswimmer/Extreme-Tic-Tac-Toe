@@ -11,7 +11,7 @@ While there is certainly not any good reason to play a 25x25 game of tic-tac-toe
 
 Computationally speaking, as the size of the board increases it becomes more and more expensive to check all of the spaces for a winner. Checking 9 spaces is no problem, but checking 625 spaces every turn is not only inefficient, but is completely unneccessary. For the new version of the game, a new system had to be devised to elegantly check for a game-winner without taking too much time, or being computationally expensive. 
 
-For most computers, 625 iterations does not take long, but if this game were to be scaled to a board that was 100x100, 1000x1000, or larger, it would become increasingly necessary to be able to determine if a player won without checking every space on the board. This project is not only fun to play, but it is also interesting as a study in optimization.
+For most computers, 625 iterations does not take long, but if this game were to be scaled to a board that was 100x100, 1000x1000, or larger, it would become increasingly necessary to be able to determine if a player won without checking every space on the board. This project is not only fun to play with, but it is also interesting as a study in algorithm optimization.
 
 ## How it works
 
