@@ -106,4 +106,4 @@ As long as you have a Mac and Xcode, it is incredibly simple to try this project
 * Build the project
 * Click 'run' and it should be good to go!
 
-Note: The game will guide you through playing it, but to play regular tic-tac-toe enter '1' and to play the new version enter '2'.
+Note: The game will tell you how to play, but to play regular tic-tac-toe enter `1` and to play the new version enter `2`.
