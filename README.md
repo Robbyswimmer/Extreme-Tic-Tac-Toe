@@ -71,6 +71,30 @@ This is mostly accomplished by the above code which populates the dictionary wit
 
 ## Optimizing win-checking
 
+An unoptimized, brute-force solution to determining if there has been a winner is to check every column, every row, and the longest diagonal for an uninterrupted stream of the same piece. This, however, is an incredibly poor algorithm choice for determining a game winner. Not only are you checking rows, columns, and spaces that might not even have pieces in them, you are also checking spaces that might not have a shred of relevance to the previous move that was made. 
+
+This gives us a runtime that is `O(n^2 + n)` or just `O(n^2)` where 'n' is the size of the given board – in other words, we are left with an exponential time complexity that does not scale well with larger games.
+
+It does not make sense to check spaces that are nowhere near the previous move, this is just wasted time. It also does not make sense to check a diagonal unless it is on one of the long diagonals. Further, it does not make sense to check for a winner at all unless the number of played pieces equals twice the size of the board - 1. If a 25x25 board is being played on, in this scenario, it is impossible for a winner to exist until a minimum of 49 moves have been played (25 - X, 24 - O).
+
+Considering this information, a new optimization strategy can be approached as follows: 
+
+* Only check for a winner if the number of moves equals at least 2x the board size - 1
+    * 25x25 = 49 moves, 100x100 = 199 
+* Only check for a winner on a space that was just played
+    *  It does not make sense to check random spaces on the board
+* If an opposing piece is found on a row, column, or diagonal the search should be immediately aborted
+    * Winning requires an uninterrupted stream of the same piece type
+* If a piece is not on the longest diagonal, checking the diagonal can be skipped entirely.
+    * In fact, once one of each type of piece have been played on the diagonal, it never has to be checked again. Winning on that diagonal will be impossible.
+
+Using this information, a brand new algorithm can be created. This algorithm only checks the row, column, and diagonal – if necessary – of the space that was just played, and only after `(2 * board_size) - 1` moves have been made.
+
+If we wanted to optimize this solution even further we could create two auxiliary arrays that store integers. One array would represent the columns on the board, and the other array would represent the rows. When a row or column on the board becomes full, only then would the algorithm be allowed to check for a winner on that row or column. Every time a move is made on the board, its corresponding index in the row array and column array would be incremented until it reached the size of the board, at which point it could finally be checked for a winning combination of pieces. 
+
+Using this auxiliary storage, which takes at most O(k) memory – where k is the size of the board – the algorithm could easily be prevented from doing unnecessary checks for winning moves which would drastically improve the performance. The final iteration of this algorithm produces worst case time complexity of O(n), but on average actually performs much better because it will only have to check for wins once the board starts to become full.
+
+![Tic-Tac-Toe](/tictactoe-images/win.png)
 
 
 ## How to play
