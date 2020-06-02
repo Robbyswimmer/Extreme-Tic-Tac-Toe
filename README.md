@@ -49,6 +49,37 @@ func letterPlacer(nextMove: String, currentBoard: String) -> Int {
 
 ![Tic-Tac-Toe](/tictactoe-images/classic.png)
 
+The normal version of the game is easily won, and it is also trivial to determine if the game has been won. In order to check for a winner all that is necessary is to loop through the 9 spaces on the board and check for 3 in a row of either type of piece. Given that there is only 9 spaces to check, doing this is very quick and can be done every turn in a negligible amount of time.
+
+Similar to the normal version of the game, the new version of the game also uses a dictionary to store the spots on the board and the existing pieces on the board. Something that is different, however, is that because the size of the board in the new version is unknown, a board has to be automatically generated for every new game that is played. 
+
+```Swift
+//creates a dictionary of the given size for each spot on the board
+func createDictionary(size: Int) -> Dictionary<String, String> {
+    var spots = [String : String]()
+    for i in 0..<size {
+        let currentLetter = Int(("A" as UnicodeScalar).value)
+        let key = ("\(Character(UnicodeScalar(i + currentLetter)!))")
+        for i in 1...size {
+            spots.updateValue(" ", forKey: "\(key)\(i)")
+        }
+    }
+    return spots
+}
+```
+This is mostly accomplished by the above code which populates the dictionary with the correct spaces that would be in a board with the given size. The above code uses the given size as a parameter and then generates all of the ASCII characters that would be included, ties them together with an integer, converts the space to a string, and then inserts that new space into the dictionary. The game is determined to be over when either the entire board is full, or a winner has been found. 
+
 ## Optimizing win-checking
 
+
+
 ## How to play
+
+As long as you have a Mac and Xcode, it is incredibly simple to try this project out: 
+
+* Download the zip file for this project
+* Open up the file in Xcode
+* Build the project
+* Click 'run' and it should be good to go!
+
+Note: The game will guide you through playing it, but to play regular tic-tac-toe enter '1' and to play the new version enter '2'.
